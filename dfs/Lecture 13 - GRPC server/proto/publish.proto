@@ -1,0 +1,15 @@
+syntax = "proto3";
+package publish;
+
+service Publish {
+    rpc PublishFile (PublishFileRequest) returns (PublishFileResponse);
+}
+
+message PublishFileRequest {
+    string file_path = 1;
+}
+
+message PublishFileResponse {
+    bool success = 1;
+    string error = 2;
+}

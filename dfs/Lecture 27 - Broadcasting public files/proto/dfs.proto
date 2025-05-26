@@ -1,0 +1,36 @@
+syntax = "proto3";
+package dfs_grpc;
+
+service Dfs {
+    rpc PublishFile (PublishFileRequest) returns (PublishFileResponse);
+    rpc Download (DownloadRequest) returns (DownloadResponse);
+    rpc GetPublicFiles (GetPublicFilesRequest) returns (stream GetPublicFileResponse);
+}
+
+message PublishFileRequest {
+    string file_path = 1;
+    bool public = 2;
+}
+
+message PublishFileResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message DownloadRequest {
+    uint64 file_id = 1;
+    string download_path = 2;
+}
+
+message DownloadResponse {
+    bool success = 1;
+    string error = 2;
+}
+
+message GetPublicFilesRequest {
+}
+
+message GetPublicFileResponse {
+    uint64 id = 1;
+    string original_file_name = 2;
+}
